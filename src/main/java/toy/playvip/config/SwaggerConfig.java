@@ -21,19 +21,19 @@ public class SwaggerConfig {
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
-//                .apiInfo(apiInfo())
+                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("toy.playvip.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
-//    private ApiInfo apiInfo(){
-//        return new ApiInfoBuilder()
-//                .title("h3yon-play")
-//                .description("h3yons's vip play")
-//                .version("1.0.0-SNAPSHOT")
-//                .build();
-//    }
+    private ApiInfo apiInfo(){
+        return new ApiInfoBuilder()
+                .title("h3yon-play")
+                .description("h3yons's vip play")
+                .version("1.0.0-SNAPSHOT")
+                .build();
+    }
 
 }
