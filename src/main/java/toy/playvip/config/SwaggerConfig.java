@@ -11,6 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * http://localhost:8080/swagger-ui.html
+ */
 @EnableSwagger2
 @Configuration
 public class SwaggerConfig {
@@ -18,21 +21,19 @@ public class SwaggerConfig {
     @Bean
     public Docket api(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo())
+//                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("toy.playvip.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo apiInfo(){
-        return new ApiInfoBuilder()
-                .title("h3yon-play")
-                .description("h3yons's vip play")
-//                .termsOfServiceUrl()
-                .version("1.0.0-SNAPSHOT")
-                .contact(new Contact("h3yonKang", "http://h3yon.shop", "khykhy1006@gmail.com"))
-                .build();
-    }
+//    private ApiInfo apiInfo(){
+//        return new ApiInfoBuilder()
+//                .title("h3yon-play")
+//                .description("h3yons's vip play")
+//                .version("1.0.0-SNAPSHOT")
+//                .build();
+//    }
 
 }

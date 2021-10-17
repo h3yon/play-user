@@ -39,6 +39,7 @@ public enum Status implements IStatus {
         this.message = message;
     }
 
+    /* 혹시 모르니까 나중에 필요하면 사용
     public static Status fromCode(Integer code) {
         Status[] statuses = Status.values();
         for (Status status : statuses) {
@@ -47,7 +48,7 @@ public enum Status implements IStatus {
             }
         }
         return SUCCESS;
-    }
+    }*/
 
     @Override
     public String toString() {

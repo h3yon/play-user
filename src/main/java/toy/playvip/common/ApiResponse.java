@@ -8,7 +8,6 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 public class ApiResponse implements Serializable {
-    private static final long serialVersionUID = 123123L;
 
     private Integer code;
     private String message;
