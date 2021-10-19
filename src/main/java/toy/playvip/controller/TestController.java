@@ -13,13 +13,13 @@ import toy.playvip.common.Status;
 @RequestMapping("/test")
 @RestController
 public class TestController {
-    @ApiOperation(value = "테스트 리스트 조회", notes = "리스트")
+    @ApiOperation(value = "응답 테스트", notes = "응답(code, message, data)가 잘 나오는지에 대한 테스트")
     @GetMapping
     public ApiResponse list(){
         return ApiResponse.ofMessage("테스트 리스트 조회");
     }
 
-    @ApiOperation(value = "exception 테스트")
+    @ApiOperation(value = "exception 테스트", notes = "code: 500, message: 실패, data:null로 예외 처리 테스트")
     @GetMapping("/exception")
     public ApiResponse exceptionTest(){
         throw new BaseException(Status.ERROR);
