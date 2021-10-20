@@ -29,7 +29,8 @@ public enum Status implements IStatus {
      */
     USERNAME_PASSWORD_ERROR(1001, "잘못된 ID 또는 비밀번호입니다"),
     TOKEN_EXPIRED(1002, "만료된 토큰입니다"),
-    TOKEN_PARSE_ERROR(1003, "token 처리에 실패했습니다");
+    TOKEN_PARSE_ERROR(1003, "token 처리에 실패했습니다"),
+    NO_EXISTS_INFO(1004, "해당 정보가 존재하지 않습니다");
 
     private Integer code;
     private String message;

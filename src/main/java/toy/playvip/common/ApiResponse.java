@@ -7,39 +7,40 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ApiResponse implements Serializable {
+public class ApiResponse<T> {
 
     private Integer code;
     private String message;
-    private Object data;
+    private T data;
 
-    public ApiResponse(Integer code, String message, Object data) {
+    public ApiResponse(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public static ApiResponse of(Integer code, String message, Object data) {
+
+    public static <T> ApiResponse<T> of(Integer code, String message, T data) {
         return new ApiResponse(code, message, data);
     }
 
-    public static ApiResponse ofSuccess() {
+    public static <T> ApiResponse<T> ofSuccess() {
         return ofSuccess(null);
     }
 
-    public static ApiResponse ofSuccess(Object data) {
+    public static <T> ApiResponse<T> ofSuccess(T data) {
         return ofStatus(Status.SUCCESS, data);
     }
 
-    public static ApiResponse ofMessage(String message) {
+    public static <T> ApiResponse<T> ofMessage(String message) {
         return of(Status.SUCCESS.getCode(), message, null);
     }
 
-    public static ApiResponse ofStatus(Status status) {
+    public static <T> ApiResponse ofStatus(Status status) {
         return ofStatus(status, null);
     }
 
-    public static ApiResponse ofStatus(IStatus status, Object data) {
+    public static <T> ApiResponse<T> ofStatus(IStatus status, T data) {
         return of(status.getCode(), status.getMessage(), data);
     }
 

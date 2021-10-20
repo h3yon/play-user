@@ -1,26 +1,31 @@
 server:
   port: 8080
+
+jwt:
+  secret: aDN5b24tdG95LXByb2plY3Qtand0LXNlY3JldC1rZXk=
+#  h3yon-toy-project-jwt-secret-key
+
 spring:
-  thymeleaf:
-    cache: false
-    mode: HTML
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
   h2:
     console:
       enabled: true
   datasource:
     hikari:
-      driver-class-name: org.h2.Driver
-      jdbc-url: jdbc:h2:./vip
+      jdbc-url: jdbc:h2:./vipdb;AUTO_SERVER=TRUE
       username: sa
       password: sb
+
   jpa:
-    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
     properties:
       hibernate:
         format_sql: true
-    hibernate:
-      ddl-auto: create
-    generate-ddl: true
+        show_sql: true
+
+  redis:
+    host: localhost
+    port: 6379
+    profiles:
+      active: local
