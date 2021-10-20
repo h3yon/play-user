@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import toy.playvip.common.ApiResponse;
+import toy.playvip.common.BaseException;
 import toy.playvip.dto.request.SigninRequestDto;
 import toy.playvip.dto.request.SignupRequestDto;
 import toy.playvip.dto.response.TokenResponseDto;
@@ -23,7 +24,7 @@ public class UserController {
 
     @ApiOperation(value = "회원가입", notes = "회원 가입 API")
     @PostMapping("/signup")
-    public ApiResponse<User> signup(@Valid @RequestBody SignupRequestDto signupRequestDto){
+    public ApiResponse<User> signup(@Valid @RequestBody SignupRequestDto signupRequestDto) throws BaseException {
         return ApiResponse.ofSuccess(userService.createUser(signupRequestDto));
     }
 

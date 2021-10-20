@@ -36,7 +36,7 @@ public class ApiResponse<T> {
         return of(Status.SUCCESS.getCode(), message, null);
     }
 
-    public static <T> ApiResponse ofStatus(Status status) {
+    public static <T> ApiResponse<T> ofStatus(Status status) {
         return ofStatus(status, null);
     }
 
