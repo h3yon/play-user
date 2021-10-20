@@ -11,6 +11,8 @@ import toy.playvip.dto.response.TokenResponseDto;
 import toy.playvip.entity.User;
 import toy.playvip.service.UserService;
 
+import javax.validation.Valid;
+
 @Api(value = "User API")
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -21,7 +23,7 @@ public class UserController {
 
     @ApiOperation(value = "회원가입", notes = "회원 가입 API")
     @PostMapping("/signup")
-    public ApiResponse<User> signup(@RequestBody SignupRequestDto signupRequestDto){
+    public ApiResponse<User> signup(@Valid @RequestBody SignupRequestDto signupRequestDto){
         return ApiResponse.ofSuccess(userService.createUser(signupRequestDto));
     }
 
