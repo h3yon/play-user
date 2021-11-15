@@ -22,7 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("toy.playvip.controller"))
+                .apis(RequestHandlerSelectors.basePackage("toy.playvip.user.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

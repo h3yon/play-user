@@ -1,7 +1,7 @@
-package toy.playvip.repository;
+package toy.playvip.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import toy.playvip.entity.User;
+import toy.playvip.user.domain.User;
 
 import java.util.Optional;
 

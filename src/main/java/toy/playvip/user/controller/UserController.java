@@ -1,4 +1,4 @@
-package toy.playvip.controller;
+package toy.playvip.user.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import toy.playvip.common.ApiResponse;
 import toy.playvip.common.BaseException;
-import toy.playvip.dto.request.SigninRequestDto;
-import toy.playvip.dto.request.SignupRequestDto;
-import toy.playvip.dto.response.TokenResponseDto;
-import toy.playvip.entity.User;
-import toy.playvip.service.UserService;
+import toy.playvip.user.dto.request.SigninRequestDto;
+import toy.playvip.user.dto.request.SignupRequestDto;
+import toy.playvip.user.dto.response.TokenResponseDto;
+import toy.playvip.user.domain.User;
+import toy.playvip.user.service.UserService;
 
 import javax.validation.Valid;
 

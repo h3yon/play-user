@@ -3,7 +3,9 @@ package toy.playvip.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,11 +14,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import toy.playvip.filter.JwtAuthenticationFilter;
 import toy.playvip.utils.JwtUtil;
 
-@RequiredArgsConstructor
+@EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtUtil jwtUtil;
+
+    public SecurityConfig(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,8 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 );
     }
 
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception{
+        return super.authenticationManagerBean();
+    }
+
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PaswswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

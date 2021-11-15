@@ -1,4 +1,4 @@
-package toy.playvip.entity;
+package toy.playvip.user.domain;
 
 import lombok.Builder;
 import lombok.Getter;

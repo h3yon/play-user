@@ -1,4 +1,4 @@
-package toy.playvip.dto.request;
+package toy.playvip.user.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

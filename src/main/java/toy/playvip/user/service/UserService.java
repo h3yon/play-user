@@ -1,4 +1,4 @@
-package toy.playvip.service;
+package toy.playvip.user.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,11 +6,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import toy.playvip.common.BaseException;
 import toy.playvip.common.Status;
-import toy.playvip.dto.request.SigninRequestDto;
-import toy.playvip.dto.request.SignupRequestDto;
-import toy.playvip.dto.response.TokenResponseDto;
-import toy.playvip.entity.User;
-import toy.playvip.repository.UserRepository;
+import toy.playvip.user.dto.request.SigninRequestDto;
+import toy.playvip.user.dto.request.SignupRequestDto;
+import toy.playvip.user.dto.response.TokenResponseDto;
+import toy.playvip.user.domain.User;
+import toy.playvip.user.repository.UserRepository;
 import toy.playvip.utils.JwtUtil;
 import toy.playvip.utils.RedisUtil;
 

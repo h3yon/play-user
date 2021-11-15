@@ -1,4 +1,4 @@
-package toy.playvip.dto.response;
+package toy.playvip.user.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
