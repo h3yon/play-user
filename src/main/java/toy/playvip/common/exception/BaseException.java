@@ -1,7 +1,8 @@
-package toy.playvip.common;
+package toy.playvip.common.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import toy.playvip.common.response.Status;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

@@ -1,8 +1,7 @@
-package toy.playvip.common;
+package toy.playvip.common.response;
 
 import lombok.*;
-
-import java.io.Serializable;
+import toy.playvip.common.exception.BaseException;
 
 @Getter
 @Setter

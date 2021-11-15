@@ -5,6 +5,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import toy.playvip.common.exception.BaseException;
+import toy.playvip.common.response.ApiResponse;
+import toy.playvip.common.response.Status;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

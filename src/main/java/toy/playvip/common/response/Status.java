@@ -1,6 +1,7 @@
-package toy.playvip.common;
+package toy.playvip.common.response;
 
 import lombok.Getter;
+import toy.playvip.common.response.IStatus;
 
 @Getter
 public enum Status implements IStatus {
@@ -26,15 +27,6 @@ public enum Status implements IStatus {
     PARAM_NOT_NULL(400, "매개변수의 NULL은 허용되지 않습니다"),
 
     USERNAME_PASSWORD_ERROR(1001, "잘못된 ID 또는 비밀번호입니다"),
-
-    /**
-     * 403 Forbidden
-     */
-    UNAUTHORIZED(403, "인가되지 않은 사용자"),
-    ACCESS_DENIED(403, "접근 제한"),
-    USER_DISABLED(403, "회원 상태가 휴면 처리 되어 있습니다. 관리자에게 요청 주세요"),
-    TOKEN_EXPIRED(403, "만료된 토큰입니다"),
-    TOKEN_PARSE_ERROR(403, "token 처리에 실패했습니다"),
 
     // 404 Not Found    405 Method Not Allowed
     NO_EXISTS_INFO(404, "해당 정보가 존재하지 않습니다"),
