@@ -6,14 +6,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import toy.playvip.common.exception.BaseException;
+import toy.playvip.common.exception.EmailSigninFailedException;
 import toy.playvip.common.response.Status;
+import toy.playvip.config.JwtTokenProvider;
+import toy.playvip.user.domain.User;
 import toy.playvip.user.dto.request.SigninRequestDto;
 import toy.playvip.user.dto.request.SignupRequestDto;
 import toy.playvip.user.dto.response.TokenResponseDto;
-import toy.playvip.user.domain.User;
+import toy.playvip.user.dto.response.UserInfoResponseDto;
 import toy.playvip.user.repository.UserRepository;
-import toy.playvip.utils.JwtUtil;
-import toy.playvip.utils.RedisUtil;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -21,11 +26,11 @@ import toy.playvip.utils.RedisUtil;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;
 //    private final RedisUtil redisUtil;
 
-    public User createUser(SignupRequestDto signupRequestDto) {
+    public UserInfoResponseDto createUser(SignupRequestDto signupRequestDto) {
 
         String encodedPassword = passwordEncoder.encode(signupRequestDto.getPassword());
 
@@ -33,14 +38,14 @@ public class UserService {
                 .email(signupRequestDto.getEmail())
                 .password(encodedPassword)
                 .username(signupRequestDto.getUsername())
-                .role(1)
+                .roles(Collections.singletonList("USER"))
                 .build();
 
         userRepository.save(user);
-        return user;
+        return new UserInfoResponseDto(user);
     }
 
-    public TokenResponseDto loginUser(SigninRequestDto signinRequestDto) {
+    public String loginUser(SigninRequestDto signinRequestDto) {
 
         String email = signinRequestDto.getEmail();
         String password = signinRequestDto.getPassword();
@@ -51,18 +56,18 @@ public class UserService {
         if (!passwordEncoder.matches(password, user.getPassword()))
             throw new BaseException(Status.USERNAME_PASSWORD_ERROR);
 
-        String accessToken = jwtUtil.createToken(user.getId(), user.getEmail(), user.getUsername(), user.getRole(), "ACCESS_TOKEN", 30);
-        String refreshToken = jwtUtil.createToken(user.getId(), user.getEmail(), user.getUsername(), user.getRole(), "REFRESH_TOKEN", 60 * 24 * 14);
-//        redisUtil.set(refreshToken, user.getRole(), 60 * 24 * 14); // 14일
-
-        return TokenResponseOf(user.getId(), email, user.getUsername(), user.getRole(), accessToken, refreshToken);
+        return jwtTokenProvider.createToken(String.valueOf(user.getEmail()), user.getRoles());
 
     }
 
     public User getMemberInfo(String email) {
         return userRepository.findByEmail(email)
                 //                .map(UserResponseDto::of)
-                .orElseThrow(() -> new BaseException(Status.NO_EXISTS_INFO));
+                .orElseThrow(() -> new EmailSigninFailedException(Status.NO_EXISTS_INFO));
+    }
+
+    public List<UserInfoResponseDto> findAllUsers(){
+        return userRepository.findAll().stream().map(UserInfoResponseDto::new).collect(Collectors.toList());
     }
 
     private TokenResponseDto TokenResponseOf(Long id, String email, String username, Integer role, String accessToken, String refreshToken) {

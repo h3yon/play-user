@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import toy.playvip.common.exception.BaseException;
+import toy.playvip.common.exception.EmailSigninFailedException;
 import toy.playvip.common.response.Response;
 import toy.playvip.common.response.Status;
 
@@ -23,6 +24,12 @@ public class GlobalExceptionHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = SecurityException.class)
     public Response securityErrorHandler(BaseException exception) {
+        return Response.ofException(exception);
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = EmailSigninFailedException.class)
+    public Response emailSigninExceptionHandler(EmailSigninFailedException exception) {
         return Response.ofException(exception);
     }
 

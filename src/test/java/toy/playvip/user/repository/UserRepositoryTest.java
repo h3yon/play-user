@@ -22,23 +22,23 @@ class UserRepositoryTest {
     final String USERNAME = "testUser";
     final String PASSWORD = "testPassword";
 
-    @Test
-    void 이름으로_찾기(){
-        // given
-
-        // when
-
-        // then
-
-
-        User testUser = new User(null, EMAIL, PASSWORD, USERNAME, 1);
-        given(userRepository.save(any(User.class))).willReturn(testUser);
-
-        User savedUser = userRepository.save(testUser);
-
-        Optional<User> userFindByEmail = userRepository.findByEmail(testUser.getEmail());
-        userFindByEmail.ifPresent(value -> Assertions.assertEquals(testUser.getEmail(), value.getEmail()));
-    }
+//    @Test
+//    void 이름으로_찾기(){
+//        // given
+//
+//        // when
+//
+//        // then
+//
+//
+//        User testUser = new User(null, EMAIL, PASSWORD, USERNAME, 1);
+//        given(userRepository.save(any(User.class))).willReturn(testUser);
+//
+//        User savedUser = userRepository.save(testUser);
+//
+//        Optional<User> userFindByEmail = userRepository.findByEmail(testUser.getEmail());
+//        userFindByEmail.ifPresent(value -> Assertions.assertEquals(testUser.getEmail(), value.getEmail()));
+//    }
 
 
 }
