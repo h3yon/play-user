@@ -2,9 +2,11 @@ package toy.playvip.user.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import toy.playvip.common.response.ApiResponse;
+import toy.playvip.common.response.Response;
 import toy.playvip.common.exception.BaseException;
 import toy.playvip.user.dto.request.SigninRequestDto;
 import toy.playvip.user.dto.request.SignupRequestDto;
@@ -23,21 +25,22 @@ public class UserController {
     private final UserService userService;
 
     @ApiOperation(value = "회원가입", notes = "회원 가입 API")
+    @ApiResponses(value = { @ApiResponse(code = 400, message = "입력값 에러") })
     @PostMapping("/signup")
-    public ApiResponse<User> signup(@Valid @RequestBody SignupRequestDto signupRequestDto) throws BaseException {
-        return ApiResponse.ofSuccess(userService.createUser(signupRequestDto));
+    public Response<User> signup(@Valid @RequestBody SignupRequestDto signupRequestDto) throws BaseException {
+        return Response.ofSuccess(userService.createUser(signupRequestDto));
     }
 
     @ApiOperation(value = "로그인", notes = "로그인 API")
     @PostMapping("/signin")
-    public ApiResponse<TokenResponseDto> signin(@RequestBody SigninRequestDto signinRequestDto){
-        return ApiResponse.ofSuccess(userService.loginUser(signinRequestDto));
+    public Response<TokenResponseDto> signin(@RequestBody SigninRequestDto signinRequestDto){
+        return Response.ofSuccess(userService.loginUser(signinRequestDto));
     }
 
     @ApiOperation(value = "회원 정보 조회", notes = "이메일로 회원 정보 조회")
     @GetMapping("/{email}")
-    public ApiResponse getMemberInfo(@PathVariable String email) {
-        return ApiResponse.ofSuccess(userService.getMemberInfo(email));
+    public Response getMemberInfo(@PathVariable String email) {
+        return Response.ofSuccess(userService.getMemberInfo(email));
     }
 
 }

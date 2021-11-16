@@ -1,4 +1,4 @@
-package toy.playvip.service;
+package toy.playvip.user.service;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
@@ -7,10 +7,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import toy.playvip.common.BaseException;
-import toy.playvip.dto.request.SignupRequestDto;
-import toy.playvip.entity.User;
-import toy.playvip.repository.UserRepository;
+import toy.playvip.common.exception.BaseException;
+import toy.playvip.user.dto.request.SignupRequestDto;
+import toy.playvip.user.domain.User;
+import toy.playvip.user.repository.UserRepository;
 import toy.playvip.utils.JwtUtil;
 import toy.playvip.utils.RedisUtil;
 

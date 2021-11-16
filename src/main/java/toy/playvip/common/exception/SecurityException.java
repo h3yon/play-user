@@ -2,15 +2,18 @@ package toy.playvip.common.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import toy.playvip.common.response.Status;
 
-@Data
-@EqualsAndHashCode
-public class SecurityException extends RuntimeException{
-    private Integer code;
-    private String message;
+@Getter
+public class SecurityException extends BaseException{
 
-    public SecurityException(SecurityExceptionCode se) {
-        this.code = se.getCode();
-        this.message = se.getMessage();
+    public SecurityException(Status status) {
+        super(status);
     }
+
+    public SecurityException(Integer code, String message) {
+        super(code, message);
+    }
+
 }
