@@ -16,7 +16,7 @@ import toy.playvip.utils.RedisUtil;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest {
+class UserServiceTest1 {
 
     @InjectMocks
     UserService userService;
@@ -26,8 +26,8 @@ class UserServiceTest {
     UserRepository userRepository;
     @Mock
     JwtUtil jwtUtil;
-    @Mock
-    RedisUtil redisUtil;
+//    @Mock
+//    RedisUtil redisUtil;
 
     final String TEST_EMAIL = "email@naver.com";
     final String TEST_PASSWORD = "Password1!";

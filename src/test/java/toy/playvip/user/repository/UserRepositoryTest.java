@@ -1,11 +1,11 @@
-package toy.playvip.repository;
+package toy.playvip.user.repository;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import toy.playvip.entity.User;
+import toy.playvip.user.domain.User;
 
 import java.util.Optional;
 
@@ -16,7 +16,7 @@ import static org.mockito.BDDMockito.given;
 class UserRepositoryTest {
 
     @Mock
-    private UserRepository userRepository;
+    private toy.playvip.user.repository.UserRepository userRepository;
 
     final String EMAIL = "test@email.com";
     final String USERNAME = "testUser";
