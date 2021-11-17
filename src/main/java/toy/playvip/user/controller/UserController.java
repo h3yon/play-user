@@ -2,6 +2,7 @@ package toy.playvip.user.controller;
 
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import toy.playvip.common.response.Response;
 import toy.playvip.common.exception.BaseException;
@@ -42,7 +43,8 @@ public class UserController {
         return Response.ofSuccess(userService.getMemberInfo(email));
     }
 
-//    @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 accessToken", required = true, dataType = "String", paramType = "header")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiImplicitParam(name = "X-AUTH-TOKEN", value = "로그인 성공 후 accessToken", required = true, dataType = "String", paramType = "header")
     @ApiOperation(value = "회원 리스트 조회", notes = "모든 회원 조회")
     @GetMapping(value = "/users")
     public Response<List<UserInfoResponseDto>> findAllUsers(){

@@ -1,3 +1,4 @@
+targetCompatibility = JavaVersion.VERSION_11
 plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -7,7 +8,7 @@ plugins {
 
 group = 'toy'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = "11"
 
 configurations {
     compileOnly {

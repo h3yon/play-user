@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,6 +22,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider { // JWT 토큰을 생성 및 검증 모듈

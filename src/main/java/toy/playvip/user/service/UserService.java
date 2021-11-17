@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import toy.playvip.common.exception.BaseException;
-import toy.playvip.common.exception.EmailSigninFailedException;
+import toy.playvip.common.exception.SignException;
 import toy.playvip.common.response.Status;
 import toy.playvip.config.JwtTokenProvider;
 import toy.playvip.user.domain.User;
@@ -20,6 +20,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static toy.playvip.common.exception.SignExceptionCode.FAIL_SIGNUP_OVERLAPPED_EMAIL;
+import static toy.playvip.common.exception.SignExceptionCode.NO_EXISTS_EMAIL;
+
 @Slf4j
 @RequiredArgsConstructor
 @Service
@@ -32,13 +35,17 @@ public class UserService {
 
     public UserInfoResponseDto createUser(SignupRequestDto signupRequestDto) {
 
+        if(validateEmail(signupRequestDto.getEmail())){
+            throw new SignException(FAIL_SIGNUP_OVERLAPPED_EMAIL);
+        }
+
         String encodedPassword = passwordEncoder.encode(signupRequestDto.getPassword());
 
         User user = User.builder()
                 .email(signupRequestDto.getEmail())
                 .password(encodedPassword)
                 .username(signupRequestDto.getUsername())
-                .roles(Collections.singletonList("USER"))
+                .roles(Collections.singletonList("ROLE_USER"))
                 .build();
 
         userRepository.save(user);
@@ -63,21 +70,14 @@ public class UserService {
     public User getMemberInfo(String email) {
         return userRepository.findByEmail(email)
                 //                .map(UserResponseDto::of)
-                .orElseThrow(() -> new EmailSigninFailedException(Status.NO_EXISTS_INFO));
+                .orElseThrow(() -> new SignException(NO_EXISTS_EMAIL));
     }
 
     public List<UserInfoResponseDto> findAllUsers(){
         return userRepository.findAll().stream().map(UserInfoResponseDto::new).collect(Collectors.toList());
     }
 
-    private TokenResponseDto TokenResponseOf(Long id, String email, String username, Integer role, String accessToken, String refreshToken) {
-        return TokenResponseDto.builder()
-                .id(id)
-                .email(email)
-                .username(username)
-                .role(role)
-                .accessToken(accessToken)
-                .refreshToken(refreshToken)
-                .build();
+    private boolean validateEmail(String email){
+        return userRepository.existsByEmail(email);
     }
 }

@@ -1,14 +1,12 @@
 package toy.playvip.common;
 
-import io.swagger.annotations.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import toy.playvip.common.exception.BaseException;
-import toy.playvip.common.exception.EmailSigninFailedException;
+import toy.playvip.common.exception.SignException;
 import toy.playvip.common.response.Response;
 import toy.playvip.common.response.Status;
 
@@ -28,8 +26,8 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(value = EmailSigninFailedException.class)
-    public Response emailSigninExceptionHandler(EmailSigninFailedException exception) {
+    @ExceptionHandler(value = SignException.class)
+    public Response emailSigninExceptionHandler(SignException exception) {
         return Response.ofException(exception);
     }
 
