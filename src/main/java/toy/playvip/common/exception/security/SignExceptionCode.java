@@ -1,4 +1,4 @@
-package toy.playvip.common.exception;
+package toy.playvip.common.exception.security;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

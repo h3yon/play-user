@@ -5,11 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import toy.playvip.common.exception.SignException;
-import toy.playvip.common.exception.SignExceptionCode;
+import toy.playvip.common.exception.security.SignException;
+import toy.playvip.common.exception.security.SignExceptionCode;
 import toy.playvip.user.repository.UserRepository;
-
-import static toy.playvip.common.response.Status.NO_EXISTS_INFO;
 
 @Slf4j
 @RequiredArgsConstructor

@@ -3,7 +3,6 @@ package toy.playvip.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,7 +10,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import toy.playvip.common.exception.CustomAuthenticationEntryPoint;
+import toy.playvip.common.exception.security.CustomAccessDeniedHandler;
+import toy.playvip.common.exception.security.CustomAuthenticationEntryPoint;
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
@@ -33,13 +33,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable() // rest api이므로 csrf 보안이 필요없으므로 disable처리.
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt token으로 인증하므로 세션은 필요없으므로 생성안함.
-                .and()
-                .authorizeRequests() // 다음 리퀘스트에 대한 사용권한 체크
-//                .antMatchers("/**").permitAll()
-                .antMatchers("/*/signin", "/*/signup").permitAll()
-                .antMatchers(HttpMethod.GET, "/exception/**", "helloworld/**").permitAll()
-                .anyRequest().hasRole("USER")
+//                .and()
+//                .authorizeRequests() // 다음 리퀘스트에 대한 사용권한 체크
+//                .antMatchers("/*/signin", "/*/signup").permitAll()
+//                .antMatchers(HttpMethod.GET, "/exception/**", "helloworld/**").permitAll()
+//                .anyRequest().hasRole("USER")
 
+                .and()
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler())
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint())
 

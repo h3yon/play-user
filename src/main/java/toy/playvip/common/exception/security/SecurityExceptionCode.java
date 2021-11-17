@@ -1,4 +1,4 @@
-package toy.playvip.common.exception;
+package toy.playvip.common.exception.security;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -6,11 +6,6 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum SecurityExceptionCode {
-    /**
-     * 403 Forbidden
-     */
-    UNAUTHORIZED(403, "인가되지 않은 사용자"),
-    ACCESS_DENIED(403, "접근 권한이 없습니다"),
     USER_DISABLED(403, "회원 상태가 휴면 처리 되어 있습니다. 관리자에게 요청 주세요"),
     TOKEN_EXPIRED(403, "만료된 토큰입니다"),
     TOKEN_PARSE_ERROR(403, "token 처리에 실패했습니다");

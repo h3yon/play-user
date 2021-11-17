@@ -6,13 +6,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import toy.playvip.common.exception.BaseException;
-import toy.playvip.common.exception.SignException;
+import toy.playvip.common.exception.security.SignException;
 import toy.playvip.common.response.Status;
 import toy.playvip.config.JwtTokenProvider;
 import toy.playvip.user.domain.User;
 import toy.playvip.user.dto.request.SigninRequestDto;
 import toy.playvip.user.dto.request.SignupRequestDto;
-import toy.playvip.user.dto.response.TokenResponseDto;
 import toy.playvip.user.dto.response.UserInfoResponseDto;
 import toy.playvip.user.repository.UserRepository;
 
@@ -20,8 +19,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static toy.playvip.common.exception.SignExceptionCode.FAIL_SIGNUP_OVERLAPPED_EMAIL;
-import static toy.playvip.common.exception.SignExceptionCode.NO_EXISTS_EMAIL;
+import static toy.playvip.common.exception.security.SignExceptionCode.FAIL_SIGNUP_OVERLAPPED_EMAIL;
+import static toy.playvip.common.exception.security.SignExceptionCode.NO_EXISTS_EMAIL;
 
 @Slf4j
 @RequiredArgsConstructor

@@ -3,14 +3,14 @@ package toy.playvip.common;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import toy.playvip.common.exception.*;
+import toy.playvip.common.exception.security.CAuthenticationEntryPointException;
+import toy.playvip.common.exception.security.SignException;
 import toy.playvip.common.response.Response;
 import toy.playvip.common.response.Status;
 
-import javax.servlet.http.HttpServletRequest;
 import java.lang.SecurityException;
 import java.util.NoSuchElementException;
 

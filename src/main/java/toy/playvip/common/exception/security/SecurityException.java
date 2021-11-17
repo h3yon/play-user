@@ -1,12 +1,10 @@
-package toy.playvip.common.exception;
+package toy.playvip.common.exception.security;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import toy.playvip.common.response.Status;
+import toy.playvip.common.exception.BaseException;
 
 @Getter
-public class SecurityException extends BaseException{
+public class SecurityException extends BaseException {
 
     public SecurityException(SecurityExceptionCode status) {
         super(status.getCode(), status.getMessage());
