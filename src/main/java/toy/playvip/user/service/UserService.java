@@ -58,7 +58,8 @@ public class UserService {
         String password = signinRequestDto.getPassword();
 
         User user = userRepository.findByEmail(email).get();
-        Assert.notNull(user, "profiles must not be null");
+//        assert user != null;
+        Assert.notNull(user, "유저는 NULL이 나오면 안 됩니다!!!!!!");
 
         if (!passwordEncoder.matches(password, user.getPassword()))
             throw new BaseException(Status.USERNAME_PASSWORD_ERROR);

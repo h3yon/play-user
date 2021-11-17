@@ -8,8 +8,8 @@ import toy.playvip.common.response.Status;
 @Getter
 public class SecurityException extends BaseException{
 
-    public SecurityException(Status status) {
-        super(status);
+    public SecurityException(SecurityExceptionCode status) {
+        super(status.getCode(), status.getMessage());
     }
 
     public SecurityException(Integer code, String message) {

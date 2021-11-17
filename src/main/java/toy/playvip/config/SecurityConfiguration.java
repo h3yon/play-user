@@ -3,6 +3,7 @@ package toy.playvip.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import toy.playvip.common.exception.CustomAuthenticationEntryPoint;
 
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 @RequiredArgsConstructor
@@ -33,11 +35,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt token으로 인증하므로 세션은 필요없으므로 생성안함.
                 .and()
                 .authorizeRequests() // 다음 리퀘스트에 대한 사용권한 체크
-                .antMatchers("/**").permitAll()
+//                .antMatchers("/**").permitAll()
+                .antMatchers("/*/signin", "/*/signup").permitAll()
+                .antMatchers(HttpMethod.GET, "/exception/**", "helloworld/**").permitAll()
+                .anyRequest().hasRole("USER")
 
-//                .antMatchers("/*/signin", "/*/signup").permitAll()
-//                .antMatchers(HttpMethod.GET, "helloworld/**").permitAll()
-//                .anyRequest().hasRole("ROLE_USER")
+                .and()
+                .exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class); // jwt token 필터를 id/password 인증 필터 전에 넣는다
 

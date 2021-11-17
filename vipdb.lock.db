@@ -1,6 +1,6 @@
 #FileLock
-#Wed Nov 17 12:36:17 KST 2021
-server=10.102.5.109\:51386
+#Wed Nov 17 16:25:56 KST 2021
+server=10.102.5.109\:54674
 hostName=10.102.5.109
 method=file
-id=17d2bf75ac3fce207f54974b1296ccef01b8a2a35da
+id=17d2cc9b5e7054c43cf5903c822de1ed9dccbb99849
