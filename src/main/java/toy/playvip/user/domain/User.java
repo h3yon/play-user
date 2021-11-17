@@ -1,5 +1,6 @@
 package toy.playvip.user.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @ToString
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) //Post Entity에서 User와의 관계를 Json으로 변환 시 오류 방지를 위한 코드
 public class User extends Timestamped implements UserDetails {
 
     @Id
