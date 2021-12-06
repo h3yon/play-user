@@ -8,6 +8,8 @@ import toy.playvip.common.exception.BaseException;
 @NoArgsConstructor
 public class Response<T> {
 
+    //아 테스트 하기
+
     private Integer code;
     private String message;
     private T data;
@@ -46,5 +48,7 @@ public class Response<T> {
     public static <T extends BaseException> Response ofException(T t) {
         return of(t.getCode(), t.getMessage(), null);
     }
+
+
 
 }
