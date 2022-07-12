@@ -1,8 +1,0 @@
-package toy.playvip.board.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import toy.playvip.board.domain.Board;
-
-public interface BoardRepository extends JpaRepository<Board, Long> {
-    Board findByName(String name);
-}
